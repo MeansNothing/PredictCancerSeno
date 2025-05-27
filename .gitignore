@@ -1,0 +1,14 @@
+# Django
+*.sqlite3
+__pycache__/
+*.py[cod]
+db.sqlite3
+
+# Entorno virtual
+venv/
+.env/
+
+# Archivos generados
+media/
+staticfiles/
+.DS_Store

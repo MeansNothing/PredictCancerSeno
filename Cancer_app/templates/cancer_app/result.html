@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados</title>
+</head>
+<body>
+    <h1>Resultados de la predicción</h1>
+
+    {% if single %}
+        <h2>Predicción individual</h2>
+        <p>Diagnóstico: {{ record.get_prediction_display }}</p>
+        <p>Probabilidad benigno: {{ record.benign_prob|floatformat:2 }}%</p>
+        <p>Probabilidad maligno: {{ record.malignant_prob|floatformat:2 }}%</p>
+    {% else %}
+        <h2>Predicciones múltiples</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Diagnóstico</th>
+                    <th>Prob. Benigno</th>
+                    <th>Prob. Maligno</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record.id }}</td>
+                    <td>{{ record.get_prediction_display }}</td>
+                    <td>{{ record.benign_prob|floatformat:2 }}%</td>
+                    <td>{{ record.malignant_prob|floatformat:2 }}%</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+</html>
